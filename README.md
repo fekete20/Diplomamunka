@@ -2,7 +2,7 @@
 
 A UiPath-ban megvalósított folyamat futtatásához a UiPath/Diplomamunka_2023 jegyzékben lévő Main.xaml állományt kell megnyitni UiPath Studio asztali környezetben. Ezt követően a "Debug File" lehetőség alatt található "Run file" kiválasztásával indítható el a folyamat.
 
-A folyamat hibamentes futtatásához szükséges, hogy egy Firefox böngészőben előzetesen bejelentkezzen a GitHub-ra egy olyan felhasználó, aki rendelkezik oktatói jogosultsággal az összes, diplomamunkámban érintett feladatra. Emellett az utolsó előtti "Do" utasításblokkon belüli "Assign" blokk "Value to save" mezőjében be kell állítani azt a jegyzéket, ahová a Firefox a letöltött fájlokat menti, továbbá a "Move File" blokkban a "To" mezőben meg kell adni a \csv kiegészítéssel azt a jegyzéket, ahol a webalkalmazás backend része található.
+A folyamat hibamentes futtatásához szükséges, hogy egy Firefox böngészőben előzetesen bejelentkezzen a GitHub-ra egy olyan felhasználó, aki rendelkezik oktatói jogosultsággal az összes, diplomamunkámban érintett feladatra. Emellett az utolsó előtti "Do" utasításblokkon belüli "Assign" blokk "Value to save" mezőjében be kell állítani azt a jegyzéket, ahová a Firefox a letöltött fájlokat menti, továbbá a "Move File" blokkban a "To" mezőben meg kell adni a /csv kiegészítéssel azt a jegyzéket, ahol a webalkalmazás backend része található.
 
 
 A webalkalmazás backend része bármely Maven-t támogató IDE-ból elindítható. Ehhez a backend/diplomamunka jegyzék tartalmát kell importálni.
