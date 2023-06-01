@@ -1,0 +1,35 @@
+<div class="container">
+<div class="container mt-5">
+  <div class="card text-center" style="color:darkgreen; padding: 20px;">
+    <h1>CSV fájlok kezelése</h1>
+  </div>
+</div>
+
+  <div class="container mt-5">
+    <div class="card text-center" style="color:green; padding: 20px;">
+      <h4>Hallgatói adatok feltöltése (CSV)</h4>
+      <input class="form-control" type="file" (change)="onFileSelected($event)">
+      <p></p>
+     <td> <button type="button" accept=".csv" class="btn btn-success" (click)="uploadFile()">Feltöltés</button></td>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="card text-center" style="color:green; padding: 20px;">
+      <h4>GitHub Classroom eredményfájl manuális feltöltése (CSV)</h4>
+      <input class="form-control" type="file" (change)="onFileSelected($event)">
+      <p></p>
+      <td> <button type="button" accept=".csv" class="btn btn-success" (click)="uploadResultFile()">Feltöltés</button></td>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="card text-center" style="color:darkred; padding: 20px;">
+      <h4>A lenti gomb kizárólag a UiPath használatára!</h4>
+      <p style="font-size: small;">A UiPath által összegyűjtött és meghatározott jegyzékben elhelyezett, hallgatói eredményeket tartalmazó CSV fájlok
+        tartalmának automatizált feldolgozása, majd adatbázisba írása. </p>
+      <td><button type="button" class="btn btn-danger" (click) = "csvResultsToDB()">CSV TO DB! </button></td>
+    </div>
+  </div>
+
+</div>

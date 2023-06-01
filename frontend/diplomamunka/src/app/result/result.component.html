@@ -1,0 +1,181 @@
+<div >
+
+  <div class="container mt-5">
+    <div class="card text-center" style="color:darkgreen; padding: 20px;">
+      <h1>Eredmények a Github Classroom-ból</h1>
+    </div>
+  </div>
+
+    <div class="card mt-5" style="padding: 20px;">
+
+          <form #registerForm="ngForm" (ngSubmit) = "register(registerForm)">
+
+            <div class="form-group">
+              <label for="assignment_name">Assignment name:</label>
+              <input type="text" #assignment_name (ngModel)="assignment_name" name="assignment_name" id="assignment_name" class="form-control" placeholder="assignment_name">
+            </div>
+            <div class="form-group">
+              <label for="assignment_url">Assignment URL:</label>
+              <input type="text" #assignment_url (ngModel)="assignment_url" name="assignment_url" id="assignment_url" class="form-control" placeholder="assignment_url">
+            </div>
+            <div class="form-group">
+              <label for="starter_code_url">Starter code URL:</label>
+              <input type="text" #starter_code_url (ngModel)="starter_code_url" name="starter_code_url" id="starter_code_url" class="form-control" placeholder="starter_code_url">
+            </div>
+            <div class="form-group">
+                <label for="github_username">GitHub username:</label>
+                <input type="text" #github_username (ngModel)="github_username" name="github_username" id="github_username" class="form-control" placeholder="github_username">
+              </div>
+              <div class="form-group">
+                <label for="roster_identifier">Roster identifier:</label>
+                <input type="text" #roster_identifier (ngModel)="roster_identifier" name="roster_identifier" id="roster_identifier" class="form-control" placeholder="roster_identifier">
+              </div>
+              <div class="form-group">
+                <label for="student_repository_name">Student repository name:</label>
+                <input type="text" #student_repository_name (ngModel)="student_repository_name" name="student_repository_name" id="student_repository_name" class="form-control" placeholder="student_repository_name">
+              </div>
+              <div class="form-group">
+                <label for="student_repository_url">Student repository URL:</label>
+                <input type="text" #student_repository_url (ngModel)="student_repository_url" name="student_repository_url" id="student_repository_url" class="form-control" placeholder="student_repository_url">
+              </div>
+              <div class="form-group">
+                <label for="submission_timestamp">Submission timestamp:</label>
+                <input type="text" #submission_timestamp (ngModel)="submission_timestamp" name="submission_timestamp" id="submission_timestamp" class="form-control" placeholder="submission_timestamp">
+              </div>
+              <div class="form-group">
+                <label for="points_awarded">Points awarded:</label>
+                <input type="number" #points_awarded (ngModel)="points_awarded" name="points_awarded" id="points_awarded" class="form-control" placeholder="points_awarded">
+              </div>
+              <div class="form-group">
+                <label for="points_available">Points available:</label>
+                <input type="number" #starter_code_url (ngModel)="points_available" name="points_available" id="points_available" class="form-control" placeholder="points_available">
+              </div>
+
+
+            <div class="form-group">
+              <input type="submit" value="Eredmény felvitele" class="btn btn-primary w-100">
+            </div>
+
+          </form>
+        </div>
+
+        <div class="mt-5" align="left">
+          <table align="left" class="table table-bordered">
+            <thead class="thead">
+              <tr>
+                <th>ID</th>
+                <th>Assign. name</th>
+                <th>Assign. URL</th>
+                <th>Starter code</th>
+                <th>GitHub ID</th>
+           <!--     <th>roster_identifier</th> -->
+                <th>Stud. repo name</th>
+                <th>Stud. repo URL</th>
+                <th>Submission time</th>
+                <th>Awarded points</th>
+                <th>Max point</th>
+                <th>Módosítás</th>
+                <th>Törlés</th>
+              </tr>
+            </thead>
+            <tbody class="tbody">
+                <tr *ngFor="let result of resultDetails">
+                  <td>{{ result.resultID }}</td>
+                  <td>{{ result.assignment_name }}</td>
+                  <td>{{ result.assignment_url }}</td>
+                  <td>{{ result.starter_code_url }}</td>
+                  <td>{{ result.github_username }}</td>
+          <!--        <td>{{ result.roster_identifier }}</td> -->
+                  <td>{{ result.student_repository_name }}</td>
+                  <td>{{ result.student_repository_url }}</td>
+                  <td>{{ result.submission_timestamp }}</td>
+                  <td>{{ result.points_awarded }}</td>
+                  <td>{{ result.points_available }}</td>
+
+                  <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click) = edit(result)>Módosít</button></td>
+                  <td><button type="button" class="btn btn-danger" (click) = "deleteResult(result)">Töröl</button></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+
+      <!-- Modal
+        source: https://getbootstrap.com/docs/5.3/components/modal/
+      -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Eredmény rekord módosítása</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form #updateForm="ngForm" (ngSubmit) = "updateResult()">
+
+                <div class="form-group">
+                    <label for="resultID">ID:</label>
+                  <input type="text" disabled #resultID [(ngModel)]="resultToUpdate.resultID" name="resultID" id="resultID" class="form-control" placeholder="Result resultID">
+                </div>
+
+                <div class="form-group">
+                    <label for="assignment_name">Assignment name:</label>
+                    <input type="text" #assignment_name [(ngModel)]="resultToUpdate.assignment_name" name="assignment_name" id="assignment_name" class="form-control" placeholder="Result assignment_name">
+                </div>
+                <div class="form-group">
+                  <label for="assignment_url">Assignment URL:</label>
+                  <input type="text" #assignment_url [(ngModel)]="resultToUpdate.assignment_url" name="assignment_url" id="assignment_url" class="form-control" placeholder="Result assignment_url">
+                </div>
+
+                <div class="form-group">
+                    <label for="starter_code_url">Starter code URL:</label>
+                    <input type="text" #starter_code_url [(ngModel)]="resultToUpdate.starter_code_url" name="starter_code_url" id="starter_code_url" class="form-control" placeholder="Result starter_code_url">
+                  </div>
+                  <div class="form-group">
+                    <label for="github_username">GitHub username:</label>
+                    <input type="text" #github_username [(ngModel)]="resultToUpdate.github_username" name="github_username" id="github_username" class="form-control" placeholder="Result github_username">
+                  </div>
+                  <div class="form-group">
+                    <label for="roster_identifier">Roster identifier:</label>
+                    <input type="text" #roster_identifier [(ngModel)]="resultToUpdate.roster_identifier" name="roster_identifier" id="roster_identifier" class="form-control" placeholder="Result roster_identifier">
+                  </div>
+                  <div class="form-group">
+                    <label for="student_repository_name">Student repository name:</label>
+                    <input type="text" #student_repository_name [(ngModel)]="resultToUpdate.student_repository_name" name="student_repository_name" id="student_repository_name" class="form-control" placeholder="Result student_repository_name">
+                  </div>
+                  <div class="form-group">
+                    <label for="student_repository_url">Student repository URL:</label>
+                    <input type="text" #student_repository_url [(ngModel)]="resultToUpdate.student_repository_url" name="student_repository_url" id="student_repository_url" class="form-control" placeholder="Result student_repository_url">
+                  </div>
+                  <div class="form-group">
+                    <label for="submission_timestamp">Submission timestamp:</label>
+                    <input type="text" #submission_timestamp [(ngModel)]="resultToUpdate.submission_timestamp" name="submission_timestamp" id="submission_timestamp" class="form-control" placeholder="Result submission_timestamp">
+                  </div>
+                  <div class="form-group">
+                    <label for="points_awarded">Points awarded:</label>
+                    <input type="number" #points_awarded [(ngModel)]="resultToUpdate.points_awarded" name="points_awarded" id="points_awarded" class="form-control" placeholder="Result points_awarded">
+                  </div>
+                  <div class="form-group">
+                    <label for="points_available">Points available:</label>
+                    <input type="number" #points_available [(ngModel)]="resultToUpdate.points_available" name="points_available" id="points_available" class="form-control" placeholder="Result points_available">
+                  </div>
+
+               <div class="form-group">
+                  <input type="submit" value="Módosítás" class="btn btn-primary w-100" data-bs-dismiss="modal">
+                </div>
+
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+</div>
+
+

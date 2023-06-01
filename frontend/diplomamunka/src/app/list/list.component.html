@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+  <div class="container mt-5">
+    <div class="card text-center" style="color:darkgreen; padding: 20px;">
+      <h1>Eredmények hallgatók adataival együtt</h1>
+    </div>
+  </div>
+
+  <div class="container">
+      <nav class="navbar">
+        <input class="form-control" type="text" name="assignment_name" [(ngModel)] = "assignment_name" (ngModelChange) = "searchForAssignmentName()"
+        placeholder="Enter assignment name to search">
+      </nav>
+
+  <nav class="navbar">
+    <input class="form-control" type="text" name="neptun_code" [(ngModel)] = "neptun_code" (ngModelChange) = "searchForNeptunCode()"
+           placeholder="Enter Neptun ID to search">
+  </nav>
+  <nav class="navbar">
+    <input class="form-control" type="text" name="student_name" [(ngModel)] = "student_name" (ngModelChange) = "searchForStudentName()"
+           placeholder="Enter student name to search">
+  </nav>
+  </div>
+
+  <div class="mt-5" >
+        <table class="table table-bordered">
+          <thead class="thead">
+            <tr>
+              <th (click)="sort('neptun_code')">Neptun ID&nbsp;<i class="fa fa-sort"></i></th>
+              <th (click)="sort('student_name')">Name&nbsp;<i class="fa fa-sort"></i></th>
+              <th (click)="sort('assignment_name')">Assignment name&nbsp;<i class="fa fa-sort"></i></th>
+              <th (click)="sort('github_username')">GitHub ID&nbsp;<i class="fa fa-sort"></i></th>
+              <th (click)="sort('student_repository_name')">Student repository&nbsp;<i class="fa fa-sort"></i></th>
+              <th (click)="sort('submission_timestamp')">Timestamp&nbsp;<i class="fa fa-sort"></i></th>
+              <th (click)="sort('points_awarded')">Points&nbsp;<i class="fa fa-sort"></i></th>
+              <th (click)="sort('points_available')">Max. points&nbsp;<i class="fa fa-sort"></i></th>
+           </tr>
+          </thead>
+          <tbody class="tbody">
+              <tr *ngFor="let li of listDetails | orderBy: key: reverse | paginate: {itemsPerPage : 25, currentPage: p};">
+                <td>{{ li.neptun_code }}</td>
+                <td>{{ li.student_name }}</td>
+                <td>{{ li.assignment_name }}</td>
+                <td>{{ li.github_username }}</td>
+                <td>{{ li.student_repository_name }}</td>
+                <td>{{ li.submission_timestamp }}</td>
+                <td>{{ li.points_awarded }}</td>
+                <td>{{ li.points_available }}</td>
+             </tr>
+          </tbody>
+        </table>
+    <pagination-controls (pageChange) = "p = $event"></pagination-controls>
+  </div>
+
+</div>
+

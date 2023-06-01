@@ -1,0 +1,108 @@
+<div class="container">
+
+  <div class="container mt-5">
+    <div class="card text-center" style="color:darkgreen; padding: 20px;">
+      <h1>Hallgatók adatai</h1>
+    </div>
+  </div>
+
+    <div class="card mt-5" style="padding: 20px;">
+          <form (ngSubmit) = "register()" [formGroup]="registerForm">
+
+            <div class="form-group">
+              <label for="neptun_code">Hallgató Neptun ID (PK):</label>
+              <input type="text" formControlName="neptun_code" class="form-control" placeholder="Hallgató Neptun azonosítója" maxlength="6" >
+            </div>
+            <div class="form-group">
+              <label for="student_name">Hallgató neve:</label>
+              <input type="text" formControlName="student_name" name="student_name" class="form-control" placeholder="Hallgató neve">
+            </div>
+            <div class="form-group">
+              <label for="github_username">Hallgató GitHub felhasználóneve:</label>
+              <input type="text" formControlName="github_username" name="github_username" class="form-control" placeholder="Hallgató GitHub felhasználóneve">
+            </div>
+
+            <span style="color: red;"  *ngIf="registerForm.errors?.['neptuncodeerror']">Neptun kódot kötelező megadni (6 karakter)!</span>
+            <p></p>
+            <div class="form-group">
+              <input type="submit" [disabled]="registerForm.invalid" value="Hallgató felvitele" class="btn btn-primary w-100">
+            </div>
+
+          </form>
+
+
+
+        </div>
+
+        <div class="mt-5">
+          <table class="table table-bordered">
+            <thead class="thead">
+              <tr>
+                <th>Neptun ID</th>
+                <th>Név</th>
+                <th>GitHub ID</th>
+
+                <th>Módosítás</th>
+                <th>Törlés</th>
+              </tr>
+            </thead>
+            <tbody class="tbody">
+                <tr *ngFor="let student of studentDetails">
+                  <td>{{ student.neptun_code }}</td>
+                  <td>{{ student.student_name }}</td>
+                  <td>{{ student.github_username }}</td>
+
+                  <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click) = edit(student)>Módosítás</button></td>
+                  <td><button type="button" class="btn btn-danger" (click) = "deleteStudent(student)">Törlés</button></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+
+      <!-- Modal
+        source: https://getbootstrap.com/docs/5.3/components/modal/
+      -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Hallgató adatainak módosítása</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form #updateForm="ngForm" (ngSubmit) = "updateStudent()">
+
+                <div class="form-group">
+                  <label for="neptun_code">Neptun ID:</label>
+                  <input type="text" disabled #neptun_code [(ngModel)]="studentToUpdate.neptun_code" name="neptun_code" id="neptun_code" class="form-control" placeholder="Student neptun_code">
+                </div>
+
+                <div class="form-group">
+                  <label for="student_name">Név:</label>
+                  <input type="text" #student_name [(ngModel)]="studentToUpdate.student_name" name="student_name" id="student_name" class="form-control" placeholder="Student student_name">
+                </div>
+                <div class="form-group">
+                  <label for="github_username">GitHub felhasználónév:</label>
+                  <input type="text" #github_username [(ngModel)]="studentToUpdate.github_username" name="github_username" id="github_username" class="form-control" placeholder="Student github_username">
+                </div>
+
+               <div class="form-group">
+                  <input type="submit" value="Módosít" class="btn btn-primary w-100" data-bs-dismiss="modal">
+                </div>
+
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+</div>
+
+
