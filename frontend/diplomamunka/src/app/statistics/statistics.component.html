@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+  <div class="container mt-5">
+    <div class="card text-center" style="color:darkgreen; padding: 20px;">
+      <h1>Statisztika</h1>
+    </div>
+  </div>
+
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Hallgatónként csoportosítva a letöltött feladatok darabszáma és az elért pontszámok
+      </mat-panel-title>
+   <!--   <mat-panel-description>
+        Kattintson a kinyitáshoz!
+      </mat-panel-description> -->
+    </mat-expansion-panel-header>
+
+    <div class="mt-5" >
+      <table class="table table-bordered">
+        <thead class="thead">
+        <tr>
+          <th>Neptun ID</th>
+          <th>Downloaded assignments</th>
+          <th>Total reached points of assignments</th>
+        </tr>
+        </thead>
+        <tbody class="tbody">
+        <tr *ngFor="let li of resultData;">
+          <td>{{ li[0] }}</td>
+          <td>{{ li[1] }}</td>
+          <td>{{ li[2] }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Fullpontos feladatot beküldött hallgatók
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="mt-5" >
+      <table class="table table-bordered">
+        <thead class="thead">
+        <tr>
+          <th>Neptun ID</th>
+          <th>Count full points assignments</th>
+        </tr>
+        </thead>
+        <tbody class="tbody">
+        <tr *ngFor="let li of fullPointData;">
+          <td>{{ li[0] }}</td>
+          <td>{{ li[1] }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Az összes feladat hány százalékát töltötte le a hallgató?
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="mt-5" >
+      <table class="table table-bordered">
+        <thead class="thead">
+        <tr>
+          <th>Neptun ID</th>
+          <th>% of all tasks</th>
+        </tr>
+        </thead>
+        <tbody class="tbody">
+        <tr *ngFor="let li of percentageDownloaded;">
+          <td>{{ li[0] }}</td>
+          <td>{{ li[1] }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+       Hány db feladata van a hallgatónak?
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="mt-5" >
+      <table class="table table-bordered">
+        <thead class="thead">
+        <tr>
+          <th>GitHub ID</th>
+          <th>% of all tasks</th>
+        </tr>
+        </thead>
+        <tbody class="tbody">
+        <tr *ngFor="let li of countDownloaded;">
+          <td>{{ li[0] }}</td>
+          <td>{{ li[1] }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-expansion-panel>
+</div>
+

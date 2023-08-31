@@ -8,6 +8,7 @@ import { ResultComponent } from './result/result.component';
 import { ListComponent } from './list/list.component';
 import { UploadCsvComponent } from './upload-csv/upload-csv.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import {StatisticsComponent} from "./statistics/statistics.component";
 
 const routes: Routes = [
   {
@@ -33,6 +34,9 @@ const routes: Routes = [
   },
   {
     path: 'registerUser', component: UserRegistrationComponent
+  },
+  {
+    path: 'statistics', component: StatisticsComponent
   }
 
 ];

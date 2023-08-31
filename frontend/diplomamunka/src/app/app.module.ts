@@ -24,6 +24,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { UploadCsvComponent } from './upload-csv/upload-csv.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { UserRegistrationComponent } from './user-registration/user-registration
     ResultComponent,
     ListComponent,
     UploadCsvComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { UserRegistrationComponent } from './user-registration/user-registration
     MatPaginatorModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    Ng2OrderModule
+    Ng2OrderModule,
+    MatExpansionModule
   ],
   providers: [
     AuthGuard,

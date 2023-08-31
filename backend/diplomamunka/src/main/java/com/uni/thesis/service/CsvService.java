@@ -40,25 +40,32 @@ public class CsvService {
             String line = "";
             String csvDelimiter = ";";
 
-            File dir = new File(filepath);
-            File[] filenames = dir.listFiles();
-            for (File name : filenames) {
-                try (BufferedReader br = new BufferedReader(new FileReader(name))) {
-                    br.readLine();
+            File dir = new File(filepath + filename);
+                try (BufferedReader br = new BufferedReader(new FileReader(filepath + filename))) {
+                    br.readLine(); // header of the CSV
                     while ((line = br.readLine()) != null) {
+
                         line = line.replace("\"", "");
+//                        System.out.println("sor:" + line);
                         String[] resultData = line.split(csvDelimiter);
+
+ //                       System.out.println("Length of resultData: " + resultData.length);
+ //                       for(String str : resultData) {
+ //                           System.out.println(str);
+ //                       }
                         Student student = new Student();
                         student.setNeptun_code(resultData[0]);
                         student.setGithub_username(resultData[1]);
                         student.setStudent_name(resultData[2]);
 
                         studentDao.save(student);
+
+
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+         dir.delete();
         } catch (IOException e) {
             e.printStackTrace();
 
